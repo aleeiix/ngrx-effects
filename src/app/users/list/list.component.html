@@ -1,4 +1,4 @@
-<div class="card-columns">
+<div *ngIf="!loading" class="card-columns">
   <div class="card" *ngFor="let user of users">
     <img [src]="user.avatar" class="card-img-top" alt="avatar" />
     <div class="card-body">
@@ -12,4 +12,18 @@
       </p>
     </div>
   </div>
+</div>
+
+<div *ngIf="loading" class="alert alert-info text-center" role="alert">
+  <h4 class="alert-heading">Cargando...</h4>
+  <p>
+    <fa-icon [icon]="faSync" spin="true" size="2x"></fa-icon>
+  </p>
+</div>
+
+<div *ngIf="error" class="alert alert-danger text-center" role="alert">
+  <h4 class="alert-heading">Error...</h4>
+  <pre>
+    {{ error | json }}
+  </pre>
 </div>

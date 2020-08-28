@@ -12,9 +12,15 @@ export class UserService {
 
   constructor(private _http: HttpClient) {}
 
-  getUsers(): Observable<User[]> {
+  getUsers() {
     return this._http
       .get(`${this.urlApi}/users?per_page=6`)
+      .pipe(map((res: any) => res.data));
+  }
+
+  getUserById(id: string) {
+    return this._http
+      .get(`${this.urlApi}/users/${id}`)
       .pipe(map((res: any) => res.data));
   }
 }
